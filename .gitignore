@@ -1,0 +1,12 @@
+# OS Generated files
+.DS_Store
+
+# GoLand files
+/.idea
+
+# Generated files
+build
+*.App
+
+# Development files
+/notes
