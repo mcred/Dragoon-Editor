@@ -1,6 +1,6 @@
 name: Release Drafter
 
-on:push
+on: push
 
 jobs:
   update_release_draft:
