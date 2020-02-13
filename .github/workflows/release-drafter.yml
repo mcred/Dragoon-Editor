@@ -3,7 +3,7 @@ name: Release Drafter
 on:
   push:
     branches:
-      - master
+      - *
 
 jobs:
   update_release_draft:
@@ -12,3 +12,16 @@ jobs:
       - uses: release-drafter/release-drafter@v5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  build-osx:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Compile Binary
+        run: ./scripts/build.sh
+      - name: Pachage Application
+        run: ./scripts/package.sh
+      - name: Upload Binary
+        uses: actions/upload-artifact@master
+        with:
+          name: LODeditor.app
+          path: .
