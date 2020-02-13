@@ -6,10 +6,11 @@ import (
 	"LODeditor/internal/app/storage"
 	"fmt"
 	"fyne.io/fyne"
+	"fyne.io/fyne/dialog"
 	"fyne.io/fyne/widget"
 )
 
-func CharacterForm(slot *storage.Slot, card *storage.Card) fyne.Widget {
+func CharacterForm(slot *storage.Slot, card *storage.Card, w fyne.Window) fyne.Widget {
 	dart := characters.Dart()
 
 	name := widget.NewEntry()
@@ -41,8 +42,8 @@ func CharacterForm(slot *storage.Slot, card *storage.Card) fyne.Widget {
 			fmt.Println("Cancelled")
 		},
 		OnSubmit: func() {
-			fmt.Println("Form submitted")
 			card.SaveCard()
+			dialog.ShowInformation("Information", "Card Saved", w)
 		},
 	}
 	form.Append("Name", name)
