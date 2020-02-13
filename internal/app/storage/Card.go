@@ -1,7 +1,6 @@
 package storage
 
 import (
-	"fmt"
 	"io/ioutil"
 )
 
@@ -27,16 +26,14 @@ func LoadCard(path string) Card {
 }
 
 func (c Card) SaveCard() {
-	var b []byte
+	b := make([]byte, 0x20000)
 	for _, slot := range c.Slots {
-		b = append(b, slot.Data...)
+		for i, byte := range slot.Data {
+			b[slot.Head + i] = byte
+		}
 	}
-	fmt.Println(c.Slots[1].Data[0x540])
-	fmt.Println(b[0x2540]) //TODO this is shifted one byte too early
-
-
-	//err := ioutil.WriteFile(c.Path, b, 0644)
-	//if err != nil {
-	//	panic(err)
-	//}
+	err := ioutil.WriteFile(c.Path, b, 0644)
+	if err != nil {
+		panic(err)
+	}
 }
