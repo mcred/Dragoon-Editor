@@ -13,12 +13,12 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v1
-      - name: Install Fyne
-        run: go get fyne.io/fyne/cmd/fyne
       - name: Compile Binary
         run: ./scripts/build.sh
       - name: Pachage Application
-        run: ./scripts/package.sh
+        run: |
+          go get fyne.io/fyne/cmd/fyne
+          ./scripts/package.sh
       - name: Upload Binary
         uses: actions/upload-artifact@master
         with:
