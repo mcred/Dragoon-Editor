@@ -19,7 +19,7 @@ jobs:
         run: ./scripts/build.sh
       - name: Pachage Application
         run: |
-        export PATH=${PATH}:`go env GOPATH`/bin
+        export PATH=${PATH}:'go env GOPATH'/bin
         ./scripts/package.sh
       - name: Upload Binary
         uses: actions/upload-artifact@master
