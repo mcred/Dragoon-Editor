@@ -4,10 +4,10 @@ import (
 	"LODeditor/internal/app/characters"
 	"LODeditor/internal/app/inventory"
 	"LODeditor/internal/app/storage"
+	"LODeditor/internal/app/ui"
 	"fmt"
 	"fyne.io/fyne"
 	"fyne.io/fyne/app"
-	"fyne.io/fyne/theme"
 	"fyne.io/fyne/widget"
 	"github.com/sqweek/dialog"
 )
@@ -17,7 +17,9 @@ func makeForm(slot *storage.Slot, card *storage.Card) fyne.Widget {
 
 	name := widget.NewEntry()
 	name.SetPlaceHolder("Dart")
-	weapon := widget.NewSelect(inventory.Weapons().GetVals(), func(string) {})
+	weapon := widget.NewSelect(inventory.Weapons().GetVals(), func(v string) {
+		slot.SetValueAtLocation(dart.Weapon, inventory.Weapons().GetIDByVal(v))
+	})
 	weapon.SetSelected(inventory.Weapons().GetValByID(slot.GetValueByAttribute(dart.Weapon)))
 
 	form := &widget.Form{
@@ -26,7 +28,6 @@ func makeForm(slot *storage.Slot, card *storage.Card) fyne.Widget {
 		},
 		OnSubmit: func() {
 			fmt.Println("Form submitted")
-			slot.SetValueAtLocation(dart.Weapon, inventory.Weapons().GetIDByVal(weapon.Selected))
 			card.SaveCard()
 		},
 	}
@@ -53,20 +54,8 @@ func Run() {
 	a := app.New()
 	w := a.NewWindow("Legend of Dragoon Editor")
 
-	toolbar := widget.NewToolbar(
-		widget.NewToolbarAction(theme.FolderOpenIcon(), func() {
-			path, err = dialog.File().Filter("Mednafen Saves", "mcr").Load()
-			if err != nil {
-				panic(err)
-			}
-			card = storage.LoadCard(path)
-			slot = card.Slots[1]
-		}),
-		widget.NewToolbarAction(theme.CancelIcon(), a.Quit),
-	)
-
 	w.SetContent(widget.NewVBox(
-		toolbar,
+		ui.Toolbar(&slot, a),
 		makeForm(&slot, &card),
 	))
 

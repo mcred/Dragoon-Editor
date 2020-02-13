@@ -1,7 +1,7 @@
 package inventory
 
 func Weapons() Inventory {
-	var w = []Item{
+	return []Item {
 		{0, "Broad Sword"},
 		{1, "Bastard Sword"},
 		{2, "Heat Blade"},
@@ -11,7 +11,6 @@ func Weapons() Inventory {
 		{6, "Claymore"},
 		{7, "Soul Eater"},
 	}
-	return w
 }
 
 
