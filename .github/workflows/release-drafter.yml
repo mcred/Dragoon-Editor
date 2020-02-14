@@ -20,7 +20,7 @@ jobs:
         run: |
           go get fyne.io/fyne/cmd/fyne
           ./scripts/package.sh
-      - name: Upload Release Asset
+      - name: Upload Application
         id: upload-release-asset
         uses: actions/upload-release-asset@v1
         env:
