@@ -27,6 +27,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.update_release_draft.outputs.upload_url }}
-          asset_path: ./LODeditor.zip
-          asset_name: LODeditor.zip
+          asset_path: ./Dragoon-Editor.zip
+          asset_name: Dragoon-Editor.zip
           asset_content_type: application/zip
