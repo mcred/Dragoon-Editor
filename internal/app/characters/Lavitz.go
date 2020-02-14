@@ -2,6 +2,7 @@ package characters
 
 func Lavitz() Character {
 	return Character{
+		ID: 		1,
 		XP:			Attribute{0x584,4,true},
 		HP: 		Attribute{0x534,2,true}, //TODO map this
 		Weapon:		Attribute{0x56C,1,false},
