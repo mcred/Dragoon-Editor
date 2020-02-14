@@ -17,12 +17,10 @@ jobs:
         run: ./scripts/build.sh
       - name: Pachage Application
         run: |
-          go env GOPATH
-#          export PATH=$PATH:"go env GOPATH"/bin
-#          go get fyne.io/fyne/cmd/fyne
-#          ./scripts/package.sh
-#      - name: Upload Binary
-#        uses: actions/upload-artifact@master
-#        with:
-#          name: LODeditor.app
-#          path: .
+          go get fyne.io/fyne/cmd/fyne
+          ./scripts/package.sh
+      - name: Upload Binary
+        uses: actions/upload-artifact@master
+        with:
+          name: LODeditor.app
+          path: .
