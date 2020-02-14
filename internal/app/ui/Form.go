@@ -71,9 +71,23 @@ func CharacterForm(slot *storage.Slot, card *storage.Card, w fyne.Window) *fyne.
 	box3.Append(widget.NewLabel("Accessories"))
 	box3.Append(createSelect(inventory.Accessories(), lavitz.Accessory, slot))
 
+	rose := characters.Rose()
 	box4 := widget.NewVBox()
-	box4.Append(form)
+	box4.Append(widget.NewLabel("Rose"))
+	box4.Append(widget.NewLabel("Weapon"))
+	box4.Append(createSelect(inventory.Daggers(), rose.Weapon, slot))
+	box4.Append(widget.NewLabel("Armor"))
+	box4.Append(createSelect(inventory.Armor(), rose.Chest, slot))
+	box4.Append(widget.NewLabel("Headgear"))
+	box4.Append(createSelect(inventory.Helms(), rose.Helmet, slot))
+	box4.Append(widget.NewLabel("Boots"))
+	box4.Append(createSelect(inventory.Boots(), rose.Boots, slot))
+	box4.Append(widget.NewLabel("Accessories"))
+	box4.Append(createSelect(inventory.Accessories(), rose.Accessory, slot))
 
-	return fyne.NewContainerWithLayout(layout.NewGridLayout(3),
-		box1, box2, box3, box4)
+	box5 := widget.NewVBox()
+	box5.Append(form)
+
+	return fyne.NewContainerWithLayout(layout.NewGridLayout(4),
+		box1, box2, box3, box4, box5)
 }

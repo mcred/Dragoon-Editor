@@ -1,6 +1,7 @@
 package characters
 
 type Character struct {
+	ID int
 	XP Attribute
 	HP Attribute
 	Weapon Attribute
