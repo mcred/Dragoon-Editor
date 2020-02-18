@@ -3,6 +3,7 @@ package characters
 func Rose() Character {
 	return Character{
 		ID: 		3,
+		Name:		"Rose",
 		XP: 		Attribute{0x5B0,4,true},
 		HP: 		Attribute{0x5B8,2,true},
 		Weapon:		Attribute{0x5C4,1,false},

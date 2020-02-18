@@ -3,6 +3,7 @@ package characters
 func Dart() Character {
 	return Character{
 		ID:			0,
+		Name:		"Dart",
 		XP: 		Attribute{0x52C,4,true},
 		HP: 		Attribute{0x534,2,true},
 		Weapon:		Attribute{0x540,1,false},
