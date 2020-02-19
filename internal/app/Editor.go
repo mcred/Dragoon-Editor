@@ -30,7 +30,7 @@ func Run() {
 
 	w.SetContent(widget.NewVBox(
 		ui.Toolbar(&slot, a),
-		ui.CharacterForm(&slot, &card, w),
+		ui.CreateForm(&slot, &card, w),
 	))
 
 	w.Resize(fyne.NewSize(800, 600))
