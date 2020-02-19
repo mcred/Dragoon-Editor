@@ -22,13 +22,6 @@ var meru = characters.Meru()
 var kongol = characters.Kongol()
 var miranda = characters.Miranda()
 
-var pos1 = common.Attribute{0x288,1, false}
-var pos1Display = common.Attribute{0x188,1, false}
-var pos2 = common.Attribute{0x28C,1, false}
-var pos2Display = common.Attribute{0x18C,1, false}
-var pos3 = common.Attribute{0x290,1, false}
-var pos3Display = common.Attribute{0x190,1, false}
-
 func createCharSelect(i inventory.Inventory, a common.Attribute, s *storage.Slot) *widget.Select {
 	r := widget.NewSelect(i.GetVals(), func(v string) {
 		s.SetValueAtLocation(a, i.GetIDByVal(v))
@@ -47,13 +40,9 @@ func createPosSelect(n []string, a common.Attribute, ad common.Attribute, s *sto
 }
 
 func createPartyForm(s *storage.Slot) *fyne.Container {
-	names := []string{
-		dart.Name, shana.Name, lavitz.Name, rose.Name, haschel.Name,
-		albert.Name, meru.Name, kongol.Name, miranda.Name,
-	}
-	s1 := createPosSelect(names, pos1, pos1Display, s)
-	s2 := createPosSelect(names, pos2, pos2Display, s)
-	s3 := createPosSelect(names, pos3, pos3Display, s)
+	s1 := createPosSelect(characters.GetCharacterNames(), common.First(), common.FirstDisplay(), s)
+	s2 := createPosSelect(characters.GetCharacterNames(), common.Second(), common.SecondDisplay(), s)
+	s3 := createPosSelect(characters.GetCharacterNames(), common.Third(), common.ThirdDisplay(), s)
 	return fyne.NewContainerWithLayout(layout.NewHBoxLayout(),
 		widget.NewLabel("Party"), s1, s2, s3)
 }
