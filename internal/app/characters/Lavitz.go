@@ -1,19 +1,19 @@
 package characters
 
 import (
-	"LODeditor/internal/app/common"
+	. "LODeditor/internal/app/storage"
 )
 
 func Lavitz() Character {
 	return Character{
 		ID:        1,
 		Name:      "Lavitz",
-		XP:        common.Attribute{0x558,4,true},
-		HP:        common.Attribute{0x560,2,true},
-		Weapon:    common.Attribute{0x56C,1,false},
-		Helmet:    common.Attribute{0x56D,1,false},
-		Chest:     common.Attribute{0x56E,1,false},
-		Boots:     common.Attribute{0x56F,1,false},
-		Accessory: common.Attribute{0x570,1,false},
+		XP:        Attribute{0x558,4,true},
+		HP:        Attribute{0x560,2,true},
+		Weapon:    Attribute{0x56C,1,false},
+		Helmet:    Attribute{0x56D,1,false},
+		Chest:     Attribute{0x56E,1,false},
+		Boots:     Attribute{0x56F,1,false},
+		Accessory: Attribute{0x570,1,false},
 	}
 }

@@ -1,6 +1,5 @@
 package inventory
 
-
 func Armor() Inventory {
 	return []Item{
 		{46,"Leather Armor"},

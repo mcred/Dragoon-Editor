@@ -1,5 +1,7 @@
 package common
 
+import . "LODeditor/internal/app/storage"
+
 func First() Attribute {
 	return Attribute{0x288,1,false}
 }
