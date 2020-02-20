@@ -23,7 +23,7 @@ var meru = characters.Meru()
 var kongol = characters.Kongol()
 var miranda = characters.Miranda()
 
-func createCharSelect(i inventory.Inventory, a common.Attribute, s *storage.Slot) *widget.Select {
+func createCharSelect(i inventory.Inventory, a storage.Attribute, s *storage.Slot) *widget.Select {
 	r := widget.NewSelect(i.GetVals(), func(v string) {
 		s.SetValueAtLocation(a, i.GetIDByVal(v))
 	})
@@ -31,7 +31,7 @@ func createCharSelect(i inventory.Inventory, a common.Attribute, s *storage.Slot
 	return r
 }
 
-func createPosSelect(n []string, a common.Attribute, ad common.Attribute, s *storage.Slot) *widget.Select {
+func createPosSelect(n []string, a storage.Attribute, ad storage.Attribute, s *storage.Slot) *widget.Select {
 	r := widget.NewSelect(n, func(v string) {
 		s.SetValueAtLocation(a, characters.GetIDByName(v))
 		s.SetValueAtLocation(ad, characters.GetIDByName(v))
@@ -40,7 +40,7 @@ func createPosSelect(n []string, a common.Attribute, ad common.Attribute, s *sto
 	return r
 }
 
-func createCharEntry(a common.Attribute, s *storage.Slot) *widget.Entry {
+func createCharEntry(a storage.Attribute, s *storage.Slot) *widget.Entry {
 	e := widget.NewEntry()
 	e.SetPlaceHolder(strconv.Itoa(s.GetValueByAttribute(a)))
 	e.OnChanged = func(v string) {

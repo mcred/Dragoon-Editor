@@ -1,4 +1,4 @@
-package common
+package storage
 
 type Attribute struct {
 	Location int

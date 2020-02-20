@@ -1,7 +1,6 @@
 package storage
 
 import (
-	"LODeditor/internal/app/common"
 	"encoding/binary"
 )
 
@@ -10,7 +9,7 @@ type Slot struct {
 	Data []byte
 }
 
-func (s *Slot) GetValueByAttribute(a common.Attribute) int {
+func (s *Slot) GetValueByAttribute(a Attribute) int {
 	b := s.Data[a.Location:(a.Location+a.Bytes)]
 	if a.Reversed {
 		switch a.Bytes {
@@ -33,7 +32,7 @@ func (s *Slot) GetValueByAttribute(a common.Attribute) int {
 	}
 }
 
-func (s *Slot) SetValueAtLocation(a common.Attribute, val int) {
+func (s *Slot) SetValueAtLocation(a Attribute, val int) {
 	b := make([]byte, a.Bytes)
 	if a.Reversed {
 		switch a.Bytes {
