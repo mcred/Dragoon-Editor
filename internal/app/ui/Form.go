@@ -40,6 +40,16 @@ func createPosSelect(n []string, a common.Attribute, ad common.Attribute, s *sto
 	return r
 }
 
+func createCharEntry(a common.Attribute, s *storage.Slot) *widget.Entry {
+	e := widget.NewEntry()
+	e.SetPlaceHolder(strconv.Itoa(s.GetValueByAttribute(a)))
+	e.OnChanged = func(v string) {
+		i, _ := strconv.Atoi(v)
+		s.SetValueAtLocation(a, i)
+	}
+	return e
+}
+
 func createPartyForm(s *storage.Slot) *fyne.Container {
 	s1 := createPosSelect(characters.GetCharacterNames(), common.First(), common.FirstDisplay(), s)
 	s2 := createPosSelect(characters.GetCharacterNames(), common.Second(), common.SecondDisplay(), s)
@@ -52,13 +62,7 @@ func createCharacterBox(b *widget.Box, c characters.Character, w inventory.Inven
 	b.Append(widget.NewLabel(c.Name))
 
 	b.Append(widget.NewLabel("HP"))
-	hp := widget.NewEntry()
-	hp.SetPlaceHolder(strconv.Itoa(s.GetValueByAttribute(c.HP)))
-	hp.OnChanged = func(v string) {
-		i, _ := strconv.Atoi(v)
-		s.SetValueAtLocation(c.HP, i)
-	}
-	b.Append(hp)
+	b.Append(createCharEntry(c.HP, s))
 
 	b.Append(widget.NewLabel("Weapon"))
 	b.Append(createCharSelect(w, c.Weapon, s))
