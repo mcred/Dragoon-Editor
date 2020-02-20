@@ -1,6 +1,5 @@
 package inventory
 
-
 func Helms() Inventory {
 	return []Item{
 		{76,"Bandana"},

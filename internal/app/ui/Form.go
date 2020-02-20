@@ -4,7 +4,7 @@ import (
 	"LODeditor/internal/app/characters"
 	"LODeditor/internal/app/common"
 	"LODeditor/internal/app/inventory"
-	"LODeditor/internal/app/storage"
+	. "LODeditor/internal/app/storage"
 	"fmt"
 	"fyne.io/fyne"
 	"fyne.io/fyne/dialog"
@@ -23,7 +23,7 @@ var meru = characters.Meru()
 var kongol = characters.Kongol()
 var miranda = characters.Miranda()
 
-func createCharSelect(i inventory.Inventory, a storage.Attribute, s *storage.Slot) *widget.Select {
+func createCharSelect(i inventory.Inventory, a Attribute, s *Slot) *widget.Select {
 	r := widget.NewSelect(i.GetVals(), func(v string) {
 		s.SetValueAtLocation(a, i.GetIDByVal(v))
 	})
@@ -31,7 +31,7 @@ func createCharSelect(i inventory.Inventory, a storage.Attribute, s *storage.Slo
 	return r
 }
 
-func createPosSelect(n []string, a storage.Attribute, ad storage.Attribute, s *storage.Slot) *widget.Select {
+func createPosSelect(n []string, a Attribute, ad Attribute, s *Slot) *widget.Select {
 	r := widget.NewSelect(n, func(v string) {
 		s.SetValueAtLocation(a, characters.GetIDByName(v))
 		s.SetValueAtLocation(ad, characters.GetIDByName(v))
@@ -40,7 +40,7 @@ func createPosSelect(n []string, a storage.Attribute, ad storage.Attribute, s *s
 	return r
 }
 
-func createCharEntry(a storage.Attribute, s *storage.Slot) *widget.Entry {
+func createCharEntry(a Attribute, s *Slot) *widget.Entry {
 	e := widget.NewEntry()
 	e.SetPlaceHolder(strconv.Itoa(s.GetValueByAttribute(a)))
 	e.OnChanged = func(v string) {
@@ -50,7 +50,7 @@ func createCharEntry(a storage.Attribute, s *storage.Slot) *widget.Entry {
 	return e
 }
 
-func createPartyForm(s *storage.Slot) *fyne.Container {
+func createPartyForm(s *Slot) *fyne.Container {
 	s1 := createPosSelect(characters.GetCharacterNames(), common.First(), common.FirstDisplay(), s)
 	s2 := createPosSelect(characters.GetCharacterNames(), common.Second(), common.SecondDisplay(), s)
 	s3 := createPosSelect(characters.GetCharacterNames(), common.Third(), common.ThirdDisplay(), s)
@@ -65,7 +65,7 @@ func createPartyForm(s *storage.Slot) *fyne.Container {
 		widget.NewLabel("Party"), s1, s2, s3, widget.NewLabel("Gold"), e1)
 }
 
-func createCharacterBox(b *widget.Box, c characters.Character, w inventory.Inventory, s *storage.Slot, window fyne.Window) {
+func createCharacterBox(b *widget.Box, c characters.Character, w inventory.Inventory, s *Slot, window fyne.Window) {
 	b.Append(widget.NewLabel(c.Name))
 
 	b.Append(widget.NewLabel("HP"))
@@ -83,7 +83,7 @@ func createCharacterBox(b *widget.Box, c characters.Character, w inventory.Inven
 	b.Append(createCharSelect(inventory.Accessories(), c.Accessory, s))
 }
 
-func CreateForm(slot *storage.Slot, card *storage.Card, w fyne.Window) *fyne.Container {
+func CreateForm(slot *Slot, card *Card, w fyne.Window) *fyne.Container {
 	form := &widget.Form{
 		OnCancel: func() {
 			fmt.Println("Cancelled")

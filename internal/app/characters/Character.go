@@ -1,19 +1,19 @@
 package characters
 
 import (
-	"LODeditor/internal/app/storage"
+	. "LODeditor/internal/app/storage"
 )
 
 type Character struct {
 	ID        int
 	Name      string
-	XP        storage.Attribute
-	HP        storage.Attribute
-	Weapon    storage.Attribute
-	Helmet    storage.Attribute
-	Chest     storage.Attribute
-	Boots     storage.Attribute
-	Accessory storage.Attribute
+	XP        Attribute
+	HP        Attribute
+	Weapon    Attribute
+	Helmet    Attribute
+	Chest     Attribute
+	Boots     Attribute
+	Accessory Attribute
 }
 
 func GetCharacters() []Character {
