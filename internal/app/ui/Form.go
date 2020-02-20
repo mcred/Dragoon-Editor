@@ -83,9 +83,11 @@ func CreateForm(slot *storage.Slot, card *storage.Card, w fyne.Window) *fyne.Con
 	createCharacterBox(box5, haschel, inventory.Knuckles(), slot)
 	box6 := widget.NewVBox()
 	createCharacterBox(box6, albert, inventory.Spears(), slot)
+	box7 := widget.NewVBox()
+	createCharacterBox(box7, meru, inventory.Maces(), slot)
 
-	chars := fyne.NewContainerWithLayout(layout.NewGridLayout(6),
-		box1, box2, box3, box4, box5, box6)
+	chars := fyne.NewContainerWithLayout(layout.NewGridLayout(7),
+		box1, box2, box3, box4, box5, box6, box7)
 	submit := fyne.NewContainerWithLayout(layout.NewHBoxLayout(),
 		form)
 
