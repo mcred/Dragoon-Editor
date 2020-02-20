@@ -22,13 +22,6 @@ var meru = characters.Meru()
 var kongol = characters.Kongol()
 var miranda = characters.Miranda()
 
-var pos1 = common.Attribute{0x288,1, false}
-var pos1Display = common.Attribute{0x188,1, false}
-var pos2 = common.Attribute{0x28C,1, false}
-var pos2Display = common.Attribute{0x18C,1, false}
-var pos3 = common.Attribute{0x290,1, false}
-var pos3Display = common.Attribute{0x190,1, false}
-
 func createCharSelect(i inventory.Inventory, a common.Attribute, s *storage.Slot) *widget.Select {
 	r := widget.NewSelect(i.GetVals(), func(v string) {
 		s.SetValueAtLocation(a, i.GetIDByVal(v))
@@ -47,13 +40,9 @@ func createPosSelect(n []string, a common.Attribute, ad common.Attribute, s *sto
 }
 
 func createPartyForm(s *storage.Slot) *fyne.Container {
-	names := []string{
-		dart.Name, shana.Name, lavitz.Name, rose.Name, haschel.Name,
-		albert.Name, meru.Name, kongol.Name, miranda.Name,
-	}
-	s1 := createPosSelect(names, pos1, pos1Display, s)
-	s2 := createPosSelect(names, pos2, pos2Display, s)
-	s3 := createPosSelect(names, pos3, pos3Display, s)
+	s1 := createPosSelect(characters.GetCharacterNames(), common.First(), common.FirstDisplay(), s)
+	s2 := createPosSelect(characters.GetCharacterNames(), common.Second(), common.SecondDisplay(), s)
+	s3 := createPosSelect(characters.GetCharacterNames(), common.Third(), common.ThirdDisplay(), s)
 	return fyne.NewContainerWithLayout(layout.NewHBoxLayout(),
 		widget.NewLabel("Party"), s1, s2, s3)
 }
@@ -90,9 +79,19 @@ func CreateForm(slot *storage.Slot, card *storage.Card, w fyne.Window) *fyne.Con
 	createCharacterBox(box3, lavitz, inventory.Spears(), slot)
 	box4 := widget.NewVBox()
 	createCharacterBox(box4, rose, inventory.Daggers(), slot)
+	box5 := widget.NewVBox()
+	createCharacterBox(box5, haschel, inventory.Knuckles(), slot)
+	box6 := widget.NewVBox()
+	createCharacterBox(box6, albert, inventory.Spears(), slot)
+	box7 := widget.NewVBox()
+	createCharacterBox(box7, meru, inventory.Maces(), slot)
+	box8 := widget.NewVBox()
+	createCharacterBox(box8, kongol, inventory.Axes(), slot)
+	box9 := widget.NewVBox()
+	createCharacterBox(box9, miranda, inventory.Bows(), slot)
 
-	chars := fyne.NewContainerWithLayout(layout.NewGridLayout(4),
-		box1, box2, box3, box4)
+	chars := fyne.NewContainerWithLayout(layout.NewGridLayout(9),
+		box1, box2, box3, box4, box5, box6, box7, box8, box9)
 	submit := fyne.NewContainerWithLayout(layout.NewHBoxLayout(),
 		form)
 

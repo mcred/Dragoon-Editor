@@ -8,12 +8,12 @@ func Haschel() Character { //TODO MAP
 	return Character{
 		ID:        04,
 		Name:      "Haschel",
-		XP:        common.Attribute{0x5B0,4,true},
-		HP:        common.Attribute{0x5B8,2,true},
-		Weapon:    common.Attribute{0x5C4,1,false},
-		Helmet:    common.Attribute{0x5C5,1,false},
-		Chest:     common.Attribute{0x5C6,1,false},
-		Boots:     common.Attribute{0x5C7,1,false},
-		Accessory: common.Attribute{0x5C8,1,false},
+		XP:        common.Attribute{0x5DC,4,true},
+		HP:        common.Attribute{0x5E4,2,true},
+		Weapon:    common.Attribute{0x5F0,1,false},
+		Helmet:    common.Attribute{0x5F1,1,false},
+		Chest:     common.Attribute{0x5F2,1,false},
+		Boots:     common.Attribute{0x5F3,1,false},
+		Accessory: common.Attribute{0x5F4,1,false},
 	}
 }

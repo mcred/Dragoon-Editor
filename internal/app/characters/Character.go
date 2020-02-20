@@ -16,16 +16,23 @@ type Character struct {
 	Accessory common.Attribute
 }
 
-func characters() []Character {
+func GetCharacters() []Character {
 	return []Character {
-		Dart(), Shana(), Lavitz(), Rose(), Haschel(), Albert(),
-		Miranda(), Meru(), Kongol(),
+		Dart(), Shana(), Lavitz(), Rose(), Haschel(), Albert(), Miranda(), Meru(), Kongol(),
 	}
+}
+
+func GetCharacterNames() []string {
+	var r []string
+	for _, c := range GetCharacters() {
+		r = append(r, c.Name)
+	}
+	return r
 }
 
 func GetNameByID(i int) string {
 	r := ""
-	for _, c := range characters() {
+	for _, c := range GetCharacters() {
 		if i == c.ID {
 			r = c.Name
 		}
@@ -35,7 +42,7 @@ func GetNameByID(i int) string {
 
 func GetIDByName(n string) int {
 	r := 0
-	for _, c := range characters() {
+	for _, c := range GetCharacters() {
 		if n == c.Name {
 			r = c.ID
 		}
