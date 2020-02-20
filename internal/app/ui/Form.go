@@ -54,8 +54,15 @@ func createPartyForm(s *storage.Slot) *fyne.Container {
 	s1 := createPosSelect(characters.GetCharacterNames(), common.First(), common.FirstDisplay(), s)
 	s2 := createPosSelect(characters.GetCharacterNames(), common.Second(), common.SecondDisplay(), s)
 	s3 := createPosSelect(characters.GetCharacterNames(), common.Third(), common.ThirdDisplay(), s)
+	e1 := widget.NewEntry()
+	e1.SetPlaceHolder(strconv.Itoa(s.GetValueByAttribute(common.Gold())))
+	e1.OnChanged = func(v string) {
+		i, _ := strconv.Atoi(v)
+		s.SetValueAtLocation(common.Gold(), i)
+		s.SetValueAtLocation(common.GoldDisplay(), i)
+	}
 	return fyne.NewContainerWithLayout(layout.NewHBoxLayout(),
-		widget.NewLabel("Party"), s1, s2, s3)
+		widget.NewLabel("Party"), s1, s2, s3, widget.NewLabel("Gold"), e1)
 }
 
 func createCharacterBox(b *widget.Box, c characters.Character, w inventory.Inventory, s *storage.Slot, window fyne.Window) {
