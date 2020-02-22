@@ -4,6 +4,9 @@ import (
 	. "LODeditor/internal/app/storage"
 )
 
+/**
+Character : struct with available game attributes
+ */
 type Character struct {
 	ID        int
 	Name      string
@@ -21,6 +24,9 @@ type Character struct {
 	Accessory Attribute
 }
 
+/**
+CreateCharacter : based off a root position in the save file
+ */
 func CreateCharacter(ID int, name string, root int) Character {
 	return Character{
 		ID:        ID,
@@ -40,12 +46,18 @@ func CreateCharacter(ID int, name string, root int) Character {
 	}
 }
 
+/**
+GetCharacters : returns splice of initiated characters
+ */
 func GetCharacters() []Character {
 	return []Character{
 		Dart(), Shana(), Lavitz(), Rose(), Haschel(), Albert(), Miranda(), Meru(), Kongol(),
 	}
 }
 
+/**
+GetCharacterNames : returns splice of string for character names from initiated characters
+ */
 func GetCharacterNames() []string {
 	var r []string
 	for _, c := range GetCharacters() {
@@ -54,6 +66,9 @@ func GetCharacterNames() []string {
 	return r
 }
 
+/**
+GetNameByID : Get character name by id from initiated characters
+ */
 func GetNameByID(i int) string {
 	r := ""
 	for _, c := range GetCharacters() {
@@ -64,6 +79,9 @@ func GetNameByID(i int) string {
 	return r
 }
 
+/**
+GetIDByName : Get character id from name from initiated characters
+ */
 func GetIDByName(n string) int {
 	r := 0
 	for _, c := range GetCharacters() {

@@ -9,6 +9,9 @@ import (
 	"github.com/sqweek/dialog"
 )
 
+/**
+Run : Main App entry point. Assembles and runs the main Fyne app.
+ */
 func Run() {
 	var path string
 	var err error
