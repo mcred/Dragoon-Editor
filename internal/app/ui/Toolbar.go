@@ -7,6 +7,7 @@ import (
 	"fyne.io/fyne/widget"
 )
 
+// Toolbar : Main toolbar for the app
 func Toolbar(slot *storage.Slot, a fyne.App) fyne.Widget {
 	toolbar := widget.NewToolbar(
 		//widget.NewToolbarAction(theme.FolderOpenIcon(), func() {
