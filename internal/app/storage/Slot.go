@@ -4,11 +4,14 @@ import (
 	"encoding/binary"
 )
 
+// Slot : Each slot in the memory card has the attributes to be edited
 type Slot struct {
 	Head int
 	Data []byte
 }
 
+// GetValueByAttribute : Gets the value of an attribute from the save slot
+// Takes into account Endianness and byte length for reading.
 func (s *Slot) GetValueByAttribute(a Attribute) int {
 	b := s.Data[a.Location:(a.Location + a.Bytes)]
 	if a.Reversed {
@@ -32,6 +35,8 @@ func (s *Slot) GetValueByAttribute(a Attribute) int {
 	}
 }
 
+// SetValueAtLocation : Sets the value of an attribute from the save slot
+// Takes into account Endianness and byte length for writing
 func (s *Slot) SetValueAtLocation(a Attribute, val int) {
 	b := make([]byte, a.Bytes)
 	if a.Reversed {

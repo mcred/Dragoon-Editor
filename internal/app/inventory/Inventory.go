@@ -19,7 +19,7 @@ func (i Inventory) GetValByID(id int) string {
 	return "Item Not Found"
 }
 
-// GetValByID : Get Inventory Item ID by Name
+// GetIDByVal : Get Inventory Item ID by Name
 func (i Inventory) GetIDByVal(val string) int {
 	for _, item := range i {
 		if item.Name == val {

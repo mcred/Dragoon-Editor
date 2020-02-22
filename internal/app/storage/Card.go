@@ -4,11 +4,13 @@ import (
 	"io/ioutil"
 )
 
+// Card : Main struct for the memory card
 type Card struct {
 	Path  string
 	Slots []Slot
 }
 
+// LoadCard : Loads a memory card from file on disc
 func LoadCard(path string) Card {
 	f, err := ioutil.ReadFile(path)
 	var s []Slot
@@ -25,6 +27,7 @@ func LoadCard(path string) Card {
 	}
 }
 
+// SaveCard : Saves the active memory card back to disc
 func (c Card) SaveCard() {
 	b := make([]byte, 0x20000)
 	for _, slot := range c.Slots {
