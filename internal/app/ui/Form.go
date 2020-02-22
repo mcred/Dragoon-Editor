@@ -33,10 +33,20 @@ func createCharSelect(i inventory.Inventory, a Attribute, s *Slot) *widget.Selec
 
 func createPosSelect(n []string, a Attribute, ad Attribute, s *Slot) *widget.Select {
 	r := widget.NewSelect(n, func(v string) {
-		s.SetValueAtLocation(a, characters.GetIDByName(v))
-		s.SetValueAtLocation(ad, characters.GetIDByName(v))
+		if v == "Empty" {
+			s.SetValueAtLocation(a, 0xFFFFFFFF)
+			s.SetValueAtLocation(ad, 0xFFFFFFFF)
+		} else {
+			s.SetValueAtLocation(a, characters.GetIDByName(v))
+			s.SetValueAtLocation(ad, characters.GetIDByName(v))
+		}
 	})
-	r.SetSelected(characters.GetNameByID(s.GetValueByAttribute(a)))
+	char := characters.GetNameByID(s.GetValueByAttribute(a))
+	if char != "" {
+		r.SetSelected(char)
+	} else {
+		r.SetSelected("Empty")
+	}
 	return r
 }
 
@@ -51,9 +61,11 @@ func createCharEntry(a Attribute, s *Slot) *widget.Entry {
 }
 
 func createPartyForm(s *Slot) *fyne.Container {
-	s1 := createPosSelect(characters.GetCharacterNames(), common.First(), common.FirstDisplay(), s)
-	s2 := createPosSelect(characters.GetCharacterNames(), common.Second(), common.SecondDisplay(), s)
-	s3 := createPosSelect(characters.GetCharacterNames(), common.Third(), common.ThirdDisplay(), s)
+	names := []string{"Empty"}
+	names = append(names, characters.GetCharacterNames()...)
+	s1 := createPosSelect(names, common.First(), common.FirstDisplay(), s)
+	s2 := createPosSelect(names, common.Second(), common.SecondDisplay(), s)
+	s3 := createPosSelect(names, common.Third(), common.ThirdDisplay(), s)
 	e1 := widget.NewEntry()
 	e1.SetPlaceHolder(strconv.Itoa(s.GetValueByAttribute(common.Gold())))
 	e1.OnChanged = func(v string) {
@@ -115,23 +127,23 @@ func CreateForm(slot *Slot, card *Card, w fyne.Window) *fyne.Container {
 		},
 	}
 	box1 := widget.NewVBox()
-	createCharacterBox(box1, dart, inventory.Swords(), slot, w)
+	createCharacterBox(box1, dart, inventory.Swords(), slot)
 	box2 := widget.NewVBox()
-	createCharacterBox(box2, shana, inventory.Bows(), slot, w)
+	createCharacterBox(box2, shana, inventory.Bows(), slot)
 	box3 := widget.NewVBox()
-	createCharacterBox(box3, lavitz, inventory.Spears(), slot, w)
+	createCharacterBox(box3, lavitz, inventory.Spears(), slot)
 	box4 := widget.NewVBox()
-	createCharacterBox(box4, rose, inventory.Daggers(), slot, w)
+	createCharacterBox(box4, rose, inventory.Daggers(), slot)
 	box5 := widget.NewVBox()
-	createCharacterBox(box5, haschel, inventory.Knuckles(), slot, w)
+	createCharacterBox(box5, haschel, inventory.Knuckles(), slot)
 	box6 := widget.NewVBox()
-	createCharacterBox(box6, albert, inventory.Spears(), slot, w)
+	createCharacterBox(box6, albert, inventory.Spears(), slot)
 	box7 := widget.NewVBox()
-	createCharacterBox(box7, meru, inventory.Maces(), slot, w)
+	createCharacterBox(box7, meru, inventory.Maces(), slot)
 	box8 := widget.NewVBox()
-	createCharacterBox(box8, kongol, inventory.Axes(), slot, w)
+	createCharacterBox(box8, kongol, inventory.Axes(), slot)
 	box9 := widget.NewVBox()
-	createCharacterBox(box9, miranda, inventory.Bows(), slot, w)
+	createCharacterBox(box9, miranda, inventory.Bows(), slot)
 
 	chars := fyne.NewContainerWithLayout(layout.NewGridLayout(9),
 		box1, box2, box3, box4, box5, box6, box7, box8, box9)
