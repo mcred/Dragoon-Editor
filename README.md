@@ -1,4 +1,8 @@
 # Legend of Dragoon Save File Editor
+![Release Drafter](https://github.com/mcred/Dragoon-Editor/workflows/Release%20Drafter/badge.svg)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/mcred/Dragoon-Editor)
+![GitHub All Releases](https://img.shields.io/github/downloads/mcred/Dragoon-Editor/total)
+
 More details coming soon.
 
 ### Releases
