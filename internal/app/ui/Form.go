@@ -78,19 +78,25 @@ func createPartyForm(s *Slot) *fyne.Container {
 
 func createCharacterBox(b *widget.Box, c characters.Character, w inventory.Inventory, s *Slot, window fyne.Window) {
 	b.Append(widget.NewLabel(c.Name))
-
+	b.Append(widget.NewLabel("Level"))
+	b.Append(createCharEntry(c.Level, s))
+	b.Append(widget.NewLabel("EXP"))
+	b.Append(createCharEntry(c.XP, s))
 	b.Append(widget.NewLabel("HP"))
 	b.Append(createCharEntry(c.HP, s))
-
-	b.Append(widget.NewLabel("Weapon"))
+	b.Append(widget.NewLabel("MP"))
+	b.Append(createCharEntry(c.MP, s))
+	b.Append(widget.NewLabel("SP"))
+	b.Append(createCharEntry(c.SP, s))
+	//b.Append(widget.NewLabel("Weapon"))
 	b.Append(createCharSelect(w, c.Weapon, s))
-	b.Append(widget.NewLabel("Armor"))
+	//b.Append(widget.NewLabel("Armor"))
 	b.Append(createCharSelect(inventory.Armor(), c.Chest, s))
-	b.Append(widget.NewLabel("Headgear"))
+	//b.Append(widget.NewLabel("Headgear"))
 	b.Append(createCharSelect(inventory.Helms(), c.Helmet, s))
-	b.Append(widget.NewLabel("Boots"))
+	//b.Append(widget.NewLabel("Boots"))
 	b.Append(createCharSelect(inventory.Boots(), c.Boots, s))
-	b.Append(widget.NewLabel("Accessories"))
+	//b.Append(widget.NewLabel("Accessories"))
 	b.Append(createCharSelect(inventory.Accessories(), c.Accessory, s))
 }
 
