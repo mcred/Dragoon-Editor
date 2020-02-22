@@ -1,7 +1,7 @@
 package inventory
 
 type Item struct {
-	ID int
+	ID   int
 	Name string
 }
 
