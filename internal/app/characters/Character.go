@@ -18,6 +18,22 @@ type Character struct {
 	Accessory 	Attribute
 }
 
+func CreateCharacter(ID int, name string, root int) Character {
+	return Character{
+		ID:        ID,
+		Name:      name,
+		XP:        Attribute{root,4,true},
+		HP:        Attribute{root + 8,2,true},
+		MP:        Attribute{root + 10,2,true},
+		Level:     Attribute{root + 18,1,false},
+		Weapon:    Attribute{root + 20,1,false},
+		Helmet:    Attribute{root + 21,1,false},
+		Chest:     Attribute{root + 22,1,false},
+		Boots:     Attribute{root + 23,1,false},
+		Accessory: Attribute{root + 24,1,false},
+	}
+}
+
 func GetCharacters() []Character {
 	return []Character {
 		Dart(), Shana(), Lavitz(), Rose(), Haschel(), Albert(), Miranda(), Meru(), Kongol(),
