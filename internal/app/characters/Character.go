@@ -10,6 +10,7 @@ type Character struct {
 	XP        	Attribute
 	HP        	Attribute
 	MP			Attribute
+	SP			Attribute
 	Level		Attribute
 	Weapon    	Attribute
 	Helmet    	Attribute
@@ -25,6 +26,7 @@ func CreateCharacter(ID int, name string, root int) Character {
 		XP:        Attribute{root,4,true},
 		HP:        Attribute{root + 8,2,true},
 		MP:        Attribute{root + 10,2,true},
+		SP:        Attribute{root + 12,2,true},
 		Level:     Attribute{root + 18,1,false},
 		Weapon:    Attribute{root + 20,1,false},
 		Helmet:    Attribute{root + 21,1,false},
