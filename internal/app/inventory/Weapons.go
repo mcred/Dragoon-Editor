@@ -1,5 +1,6 @@
 package inventory
 
+// Swords : Inventory list of available in game Swords
 func Swords() Inventory {
 	return []Item{
 		{0, "Broad Sword"},
@@ -13,6 +14,7 @@ func Swords() Inventory {
 	}
 }
 
+// Axes : Inventory list of available in game Axes
 func Axes() Inventory {
 	return []Item{
 		{8, "Axe"},
@@ -23,6 +25,7 @@ func Axes() Inventory {
 	}
 }
 
+// Daggers : Inventory list of available in game Daggers
 func Daggers() Inventory {
 	return []Item{
 		{13, "Rapier"},
@@ -35,6 +38,7 @@ func Daggers() Inventory {
 	}
 }
 
+// Spears : Inventory list of available in game Spears
 func Spears() Inventory {
 	return []Item{
 		{20, "Spear"},
@@ -47,6 +51,7 @@ func Spears() Inventory {
 	}
 }
 
+// Bows : Inventory list of available in game Bows
 func Bows() Inventory {
 	return []Item{
 		{27, "Short Bow"},
@@ -59,6 +64,7 @@ func Bows() Inventory {
 	}
 }
 
+// Maces : Inventory list of available in game Maces
 func Maces() Inventory {
 	return []Item{
 		{34, "Mace"},
@@ -70,6 +76,7 @@ func Maces() Inventory {
 	}
 }
 
+// Knuckles : Inventory list of available in game Knuckles
 func Knuckles() Inventory {
 	return []Item{
 		{40, "Iron Knuckle"},

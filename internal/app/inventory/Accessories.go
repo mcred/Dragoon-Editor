@@ -1,5 +1,6 @@
 package inventory
 
+// Accessories : Inventory list of available in game Accessories
 func Accessories() Inventory {
 	return []Item{
 		{103, "Poison Guard"},

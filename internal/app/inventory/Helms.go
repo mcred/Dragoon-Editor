@@ -1,5 +1,6 @@
 package inventory
 
+// Helms : Inventory list of available in game Helms
 func Helms() Inventory {
 	return []Item{
 		{76, "Bandana"},

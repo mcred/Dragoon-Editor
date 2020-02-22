@@ -1,5 +1,6 @@
 package inventory
 
+// Boots : Inventory list of available in game Boots
 func Boots() Inventory {
 	return []Item{
 		{93, "Leather Boots"},
