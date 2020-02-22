@@ -116,6 +116,7 @@ func createCharacterBox(b *widget.Box, c characters.Character, w inventory.Inven
 	b.Append(createCharSelect(inventory.Accessories(), c.Accessory, s))
 }
 
+// CreateForm : Returns the main form to edit the save slot
 func CreateForm(slot *Slot, card *Card, w fyne.Window) *fyne.Container {
 	form := &widget.Form{
 		OnCancel: func() {
