@@ -9,16 +9,14 @@ import (
 	"github.com/sqweek/dialog"
 )
 
-/**
-Run : Main App entry point. Assembles and runs the main Fyne app.
- */
+// Run : Main App entry point. Assembles and runs the main Fyne app.
 func Run() {
 	var path string
 	var err error
 	var card storage.Card
 	var slot storage.Slot
 
-	//Load Save File on App Open
+	// Load Save File on App Open
 	if path == "" {
 		path, err = dialog.File().Filter("Mednafen Saves", "mcr").Load()
 		if err != nil {
