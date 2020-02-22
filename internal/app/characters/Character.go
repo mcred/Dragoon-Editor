@@ -10,6 +10,7 @@ type Character struct {
 	XP        	Attribute
 	HP        	Attribute
 	MP			Attribute
+	Level		Attribute
 	Weapon    	Attribute
 	Helmet    	Attribute
 	Chest     	Attribute

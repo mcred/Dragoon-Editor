@@ -11,6 +11,7 @@ func Lavitz() Character {
 		XP:        	Attribute{0x558,4,true},
 		HP:        	Attribute{0x560,2,true},
 		MP:		   	Attribute{0x562,2,true},
+		Level:		Attribute{0x56A,1,false},
 		Weapon:    	Attribute{0x56C,1,false},
 		Helmet:    	Attribute{0x56D,1,false},
 		Chest:     	Attribute{0x56E,1,false},

@@ -11,6 +11,7 @@ func Haschel() Character { //TODO MAP
 		XP:        	Attribute{0x5DC,4,true},
 		HP:        	Attribute{0x5E4,2,true},
 		MP:		   	Attribute{0x5E6,2,true},
+		Level:		Attribute{0x5EE,1,false},
 		Weapon:    	Attribute{0x5F0,1,false},
 		Helmet:    	Attribute{0x5F1,1,false},
 		Chest:     	Attribute{0x5F2,1,false},

@@ -78,6 +78,8 @@ func createPartyForm(s *Slot) *fyne.Container {
 
 func createCharacterBox(b *widget.Box, c characters.Character, w inventory.Inventory, s *Slot, window fyne.Window) {
 	b.Append(widget.NewLabel(c.Name))
+	b.Append(widget.NewLabel("Level"))
+	b.Append(createCharEntry(c.Level, s))
 	b.Append(widget.NewLabel("EXP"))
 	b.Append(createCharEntry(c.XP, s))
 	b.Append(widget.NewLabel("HP"))

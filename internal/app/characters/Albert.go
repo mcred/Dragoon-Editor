@@ -11,6 +11,7 @@ func Albert() Character { //TODO MAP
 		XP:        	Attribute{0x608,4,true},
 		HP:        	Attribute{0x610,2,true},
 		MP:		   	Attribute{0x612,2,true},
+		Level:		Attribute{0x61A,1,false},
 		Weapon:    	Attribute{0x61C,1,false},
 		Helmet:    	Attribute{0x61D,1,false},
 		Chest:     	Attribute{0x61E,1,false},

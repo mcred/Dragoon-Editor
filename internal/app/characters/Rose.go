@@ -11,6 +11,7 @@ func Rose() Character {
 		XP:        	Attribute{0x5B0,4,true},
 		HP:        	Attribute{0x5B8,2,true},
 		MP:		   	Attribute{0x5BA,2,true},
+		Level:		Attribute{0x5C2,1,false},
 		Weapon:    	Attribute{0x5C4,1,false},
 		Helmet:    	Attribute{0x5C5,1,false},
 		Chest:     	Attribute{0x5C6,1,false},

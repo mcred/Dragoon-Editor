@@ -11,6 +11,7 @@ func Meru() Character { //TODO map
 		XP:        	Attribute{0x634,4,true},
 		HP:        	Attribute{0x63C,2,true},
 		MP:		   	Attribute{0x63E,2,true},
+		Level:		Attribute{0x646,1,false},
 		Weapon:    	Attribute{0x648,1,false},
 		Helmet:    	Attribute{0x649,1,false},
 		Chest:     	Attribute{0x64A,1,false},
