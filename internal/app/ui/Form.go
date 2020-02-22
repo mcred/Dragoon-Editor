@@ -82,6 +82,8 @@ func createCharacterBox(b *widget.Box, c characters.Character, w inventory.Inven
 	b.Append(createCharEntry(c.XP, s))
 	b.Append(widget.NewLabel("HP"))
 	b.Append(createCharEntry(c.HP, s))
+	b.Append(widget.NewLabel("MP"))
+	b.Append(createCharEntry(c.MP, s))
 	b.Append(widget.NewLabel("Weapon"))
 	b.Append(createCharSelect(w, c.Weapon, s))
 	b.Append(widget.NewLabel("Armor"))

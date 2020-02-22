@@ -5,15 +5,16 @@ import (
 )
 
 type Character struct {
-	ID        int
-	Name      string
-	XP        Attribute
-	HP        Attribute
-	Weapon    Attribute
-	Helmet    Attribute
-	Chest     Attribute
-	Boots     Attribute
-	Accessory Attribute
+	ID        	int
+	Name      	string
+	XP        	Attribute
+	HP        	Attribute
+	MP			Attribute
+	Weapon    	Attribute
+	Helmet    	Attribute
+	Chest     	Attribute
+	Boots     	Attribute
+	Accessory 	Attribute
 }
 
 func GetCharacters() []Character {
