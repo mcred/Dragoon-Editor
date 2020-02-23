@@ -5,11 +5,12 @@ import (
 	"LODeditor/internal/app/common"
 	"LODeditor/internal/app/inventory"
 	. "LODeditor/internal/app/storage"
-	"fmt"
 	"fyne.io/fyne"
+	"fyne.io/fyne/canvas"
 	"fyne.io/fyne/dialog"
 	"fyne.io/fyne/layout"
 	"fyne.io/fyne/widget"
+	"image/color"
 	"strconv"
 )
 
@@ -81,76 +82,89 @@ func createPartyForm(s *Slot) *fyne.Container {
 		s.SetValueAtLocation(common.StardustDisplay(), i)
 	}
 
-	return fyne.NewContainerWithLayout(layout.NewHBoxLayout(),
+	spacer := canvas.NewRectangle(&color.RGBA{128, 128, 128, 255})
+	spacer.SetMinSize(fyne.NewSize(190, 5))
+
+	return fyne.NewContainerWithLayout(layout.NewVBoxLayout(),
 		widget.NewLabel("Party"), s1, s2, s3,
+		spacer,
 		widget.NewLabel("Gold"), e1,
 		widget.NewLabel("Stardust"), e2,
 	)
 }
 
-func createCharacterBox(b *widget.Box, c characters.Character, w inventory.Inventory, s *Slot) {
-	b.Append(widget.NewLabel(c.Name))
-	b.Append(widget.NewLabel("Level"))
-	b.Append(createCharEntry(c.Level, s))
-	b.Append(widget.NewLabel("Dragoon Level"))
-	b.Append(createCharEntry(c.DLevel, s))
-	b.Append(widget.NewLabel("EXP"))
-	b.Append(createCharEntry(c.XP, s))
-	b.Append(widget.NewLabel("HP"))
-	b.Append(createCharEntry(c.HP, s))
-	b.Append(widget.NewLabel("MP"))
-	b.Append(createCharEntry(c.MP, s))
-	b.Append(widget.NewLabel("SP"))
-	b.Append(createCharEntry(c.SP, s))
-	b.Append(widget.NewLabel("SP Max"))
-	b.Append(createCharEntry(c.SPMax, s))
-	//b.Append(widget.NewLabel("Weapon"))
-	b.Append(createCharSelect(w, c.Weapon, s))
-	//b.Append(widget.NewLabel("Armor"))
-	b.Append(createCharSelect(inventory.Armor(), c.Chest, s))
-	//b.Append(widget.NewLabel("Headgear"))
-	b.Append(createCharSelect(inventory.Helms(), c.Helmet, s))
-	//b.Append(widget.NewLabel("Boots"))
-	b.Append(createCharSelect(inventory.Boots(), c.Boots, s))
-	//b.Append(widget.NewLabel("Accessories"))
-	b.Append(createCharSelect(inventory.Accessories(), c.Accessory, s))
+func createCharacterBox(c characters.Character, w inventory.Inventory, s *Slot) *fyne.Container {
+	lb := widget.NewVBox()
+	mb := widget.NewVBox()
+	rb := widget.NewVBox()
+	lb.Append(widget.NewLabel("Level"))
+	lb.Append(createCharEntry(c.Level, s))
+	lb.Append(widget.NewLabel("Dragoon Level"))
+	lb.Append(createCharEntry(c.DLevel, s))
+	lb.Append(widget.NewLabel("EXP"))
+	lb.Append(createCharEntry(c.XP, s))
+	lb.Append(widget.NewLabel("HP"))
+	lb.Append(createCharEntry(c.HP, s))
+	mb.Append(widget.NewLabel("MP"))
+	mb.Append(createCharEntry(c.MP, s))
+	mb.Append(widget.NewLabel("SP"))
+	mb.Append(createCharEntry(c.SP, s))
+	mb.Append(widget.NewLabel("SP Max"))
+	mb.Append(createCharEntry(c.SPMax, s))
+	rb.Append(widget.NewLabel("Weapon"))
+	rb.Append(createCharSelect(w, c.Weapon, s))
+	rb.Append(widget.NewLabel("Armor"))
+	rb.Append(createCharSelect(inventory.Armor(), c.Chest, s))
+	rb.Append(widget.NewLabel("Headgear"))
+	rb.Append(createCharSelect(inventory.Helms(), c.Helmet, s))
+	rb.Append(widget.NewLabel("Boots"))
+	rb.Append(createCharSelect(inventory.Boots(), c.Boots, s))
+	rb.Append(widget.NewLabel("Accessories"))
+	rb.Append(createCharSelect(inventory.Accessories(), c.Accessory, s))
+	container := fyne.NewContainerWithLayout(layout.NewFixedGridLayout(fyne.NewSize(190, 120)), lb, mb, rb)
+	return container
 }
 
 // CreateForm : Returns the main form to edit the save slot
 func CreateForm(slot *Slot, card *Card, w fyne.Window) *fyne.Container {
 	form := &widget.Form{
-		OnCancel: func() {
-			fmt.Println("Cancelled")
-		},
 		OnSubmit: func() {
 			card.SaveCard()
 			dialog.ShowInformation("Information", "Card Saved", w)
 		},
 	}
-	box1 := widget.NewVBox()
-	createCharacterBox(box1, dart, inventory.Swords(), slot)
-	box2 := widget.NewVBox()
-	createCharacterBox(box2, shana, inventory.Bows(), slot)
-	box3 := widget.NewVBox()
-	createCharacterBox(box3, lavitz, inventory.Spears(), slot)
-	box4 := widget.NewVBox()
-	createCharacterBox(box4, rose, inventory.Daggers(), slot)
-	box5 := widget.NewVBox()
-	createCharacterBox(box5, haschel, inventory.Knuckles(), slot)
-	box6 := widget.NewVBox()
-	createCharacterBox(box6, albert, inventory.Spears(), slot)
-	box7 := widget.NewVBox()
-	createCharacterBox(box7, meru, inventory.Maces(), slot)
-	box8 := widget.NewVBox()
-	createCharacterBox(box8, kongol, inventory.Axes(), slot)
-	box9 := widget.NewVBox()
-	createCharacterBox(box9, miranda, inventory.Bows(), slot)
 
-	chars := fyne.NewContainerWithLayout(layout.NewGridLayout(9),
-		box1, box2, box3, box4, box5, box6, box7, box8, box9)
+	box1 := createCharacterBox(dart, inventory.Swords(), slot)
+	box2 := createCharacterBox(shana, inventory.Bows(), slot)
+	box3 := createCharacterBox(lavitz, inventory.Spears(), slot)
+	box4 := createCharacterBox(rose, inventory.Daggers(), slot)
+	box5 := createCharacterBox(haschel, inventory.Knuckles(), slot)
+	box6 := createCharacterBox(albert, inventory.Spears(), slot)
+	box7 := createCharacterBox(meru, inventory.Maces(), slot)
+	box8 := createCharacterBox(kongol, inventory.Axes(), slot)
+	box9 := createCharacterBox(miranda, inventory.Bows(), slot)
+
+	tabs := widget.NewTabContainer(
+		widget.NewTabItem("Dart", box1),
+		widget.NewTabItem("Shana", box2),
+		widget.NewTabItem("Lavitz", box3),
+		widget.NewTabItem("Rose", box4),
+		widget.NewTabItem("Haschel", box5),
+		widget.NewTabItem("Albert", box6),
+		widget.NewTabItem("Meru", box7),
+		widget.NewTabItem("Kongol", box8),
+		widget.NewTabItem("Miranda", box9),
+	)
+
+	//chars := fyne.NewContainerWithLayout(layout.NewGridLayout(9),
+	//	box1, box2, box3, box4, box5, box6, box7, box8, box9)
+
 	submit := fyne.NewContainerWithLayout(layout.NewHBoxLayout(),
 		form)
 
+	main := fyne.NewContainerWithLayout(layout.NewHBoxLayout(),
+		createPartyForm(slot), tabs)
+
 	return fyne.NewContainerWithLayout(layout.NewVBoxLayout(),
-		createPartyForm(slot), chars, submit)
+		main, submit)
 }

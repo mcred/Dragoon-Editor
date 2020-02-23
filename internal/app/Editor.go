@@ -28,12 +28,14 @@ func Run() {
 
 	a := app.New()
 	w := a.NewWindow("Legend of Dragoon Editor")
-
 	w.SetContent(widget.NewVBox(
 		ui.Toolbar(&slot, a),
 		ui.CreateForm(&slot, &card, w),
 	))
-
+	w.SetMainMenu(fyne.NewMainMenu(fyne.NewMenu("File",
+		fyne.NewMenuItem("Quit", func() { a.Quit() }),
+	)))
+	w.SetMaster()
 	w.Resize(fyne.NewSize(800, 600))
 	w.ShowAndRun()
 }

@@ -3,7 +3,6 @@ package ui
 import (
 	"LODeditor/internal/app/storage"
 	"fyne.io/fyne"
-	"fyne.io/fyne/theme"
 	"fyne.io/fyne/widget"
 )
 
@@ -19,7 +18,7 @@ func Toolbar(slot *storage.Slot, a fyne.App) fyne.Widget {
 		//	*slot = card.Slots[1]
 		//}),
 		widget.NewToolbarSpacer(),
-		widget.NewToolbarAction(theme.CancelIcon(), a.Quit),
+		//widget.NewToolbarAction(theme.CancelIcon(), a.Quit),
 	)
 	return toolbar
 }
