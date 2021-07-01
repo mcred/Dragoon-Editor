@@ -20,7 +20,7 @@ jobs:
 
       - name: Extract Commit Hash
         run: |
-          echo "COMMIT_HASH=$(git rev-parse --short "${{ github.event.pull_request.merged }}")" >> $GITHUB_ENV
+          echo "COMMIT_HASH=$(git rev-parse --short "${{ github.event.commits.id }}" >> $GITHUB_ENV
           echo $COMMIT_HASH
           
           
