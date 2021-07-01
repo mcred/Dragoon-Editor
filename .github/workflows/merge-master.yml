@@ -22,6 +22,8 @@ jobs:
         run: |
           echo "COMMIT_HASH=$(git rev-parse --short "${{ github.event.pull_request.merged }}")" >> $GITHUB_ENV
           echo $COMMIT_HASH
+          
+          
 
 #      - name: Tag Commit Container as Staging
 #        run: ./.github/tag-remote-image.sh $COMMIT_HASH staging
