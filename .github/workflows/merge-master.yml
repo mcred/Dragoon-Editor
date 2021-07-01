@@ -1,0 +1,16 @@
+name: Deploy to Master
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+
+  payload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: |
+          echo "$GITHUB_CONTEXT"
