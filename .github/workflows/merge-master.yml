@@ -29,9 +29,7 @@ jobs:
         run: echo $COMMIT_HASH
 
       - name: Extract Commit Hash from PR
-        run: echo "PR_COMMIT_HASH=$(git rev-parse --short "$(jq -r '.commits[-2].id' $PR_EVENT)")" >> $GITHUB_ENV
-        env:
-          PR_EVENT: ${{ github.event }}
+        run: echo "PR_COMMIT_HASH=$(git rev-parse --short "$(jq -r '.commits[-2].id' $GITHUB_EVENT_PATH)")" >> $GITHUB_ENV
 
       - name: Output PR Commit Hash
         run: echo $PR_COMMIT_HASH
