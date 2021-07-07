@@ -1,6 +1,8 @@
 name: Deploy to Master
 
 on:
+  pull_request:
+    branches: [ master ]
   push:
     branches: [ master ]
 
@@ -18,12 +20,15 @@ jobs:
         run: |
           echo "$GITHUB_CONTEXT"
 
-      - name: Extract Commit Hash
-        run: |
-          echo "COMMIT_HASH=$(git rev-parse --short "${{ github.event.commits[0].id }}")" >> $GITHUB_ENV
-          echo $COMMIT_HASH
-          
-          
+      - name: Extract Commit Hash from Push
+        run: echo "COMMIT_HASH=$(git rev-parse --short "$SHA")" >> $GITHUB_ENV
+        env:
+          SHA: ${{ github.event.pull_request.head.sha }}
 
-#      - name: Tag Commit Container as Staging
-#        run: ./.github/tag-remote-image.sh $COMMIT_HASH staging
+      - name: Output Commit Hash
+        run: echo $COMMIT_HASH
+
+      - name: Extract Commit Hash from PR
+        run: |
+          echo "PR_COMMIT_HASH=$(git rev-parse --short "${{ github.event.commits[0].id }}")" >> $GITHUB_ENV
+          echo $PR_COMMIT_HASH
