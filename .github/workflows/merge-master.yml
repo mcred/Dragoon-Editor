@@ -22,7 +22,7 @@ jobs:
 
       - name: Extract Commit Hash from Push
         run: |
-          echo "COMMIT_HASH=$(git rev-parse --short "$GITHUB_HEAD_REF")" >> $GITHUB_ENV
+          echo "COMMIT_HASH=$(git rev-parse --short "${{github.event.pull_request.repo.sha}}")" >> $GITHUB_ENV
           echo $COMMIT_HASH
 
       - name: Extract Commit Hash from PR
